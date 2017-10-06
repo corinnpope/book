@@ -17,4 +17,4 @@ class Favorite(models.Model):
 	votes = models.IntegerField(default=0)
 
 	def __str__(self):
-		return self.resource
+		return self.comments
