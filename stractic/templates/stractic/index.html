@@ -1,0 +1,13 @@
+{% extends 'stractic/base.html' %}
+
+{% block content %}
+
+	{% if latest_resource_list %}<ul>
+	    {% for resource in latest_resource_list %}
+	    <li><a href="{% url 'stractic:detail' resource.id %}">{{ resource.resource_description }}</a></li>
+	    {% endfor %}</ul>
+	{% else %}
+		<p>No resources are available.</p>]]>
+	{% endif %}
+
+{% endblock %}

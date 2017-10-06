@@ -1,0 +1,12 @@
+<ul>
+	<li>{{ resource.resource_name }}</li>
+	<li>{{ resource.resource_url }}</li>
+	<li>{{ resource.resource_description }}</li>
+</ul>
+
+<h1>{{ resource.resource_description }}</h1>
+<ul>
+{% for favorite in resource.favorite_set.all %}
+    <li>{{ favorite.comments }}</li>
+{% endfor %}
+</ul>

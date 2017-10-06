@@ -1,0 +1,15 @@
+{% extends 'stractic/base.html' %}
+
+{% block content %}
+
+	<!-- whoah! just use _set for foreign keys- that's handy -->
+	<h1>{{ resource.resource_description }}</h1>
+
+	<ul>
+	{% for favorite in resource.favorite_set.all %}
+	    <li>{{ favorite.comments }}</li>
+	    <li>{{ favorite.votes }}
+	{% endfor %}
+	</ul>
+
+{% endblock %}
