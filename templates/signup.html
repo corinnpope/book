@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block body %}
+  <div class="container">
+    <h2>Sign up</h2>
+    <form method="post" novalidate>
+      {% csrf_token %}
+      {{ form.as_p }}
+      
+      {% if field.help_text %}
+	      <small class="form-text text-muted">
+	        {{ field.help_text|safe }}  <!-- new code here -->
+	      </small>
+      {% endif %}
+
+      <button type="submit" class="btn btn-primary">Create an account</button>
+    </form>
+  </div>
+{% endblock %}

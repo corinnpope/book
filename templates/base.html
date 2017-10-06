@@ -7,11 +7,13 @@
         <link href='//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
         <link rel="stylesheet" href="{% static 'css/blog.css' %}">
     </head>
-    <body>
+<body>
+    {% block body %} 
+
     <nav class="navbar navbar-default">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="{% url 'index' %}">Stractic</a>
+      <a class="navbar-brand" href="{% url 'index' %}">LOADING FROM BASE TEMPLATE</a>
     </div>
     <ul class="nav navbar-nav">
       <li class="active"><a href="#">Home</a></li>
@@ -19,14 +21,14 @@
     </ul>
   </div>
 </nav>
-        <div class="content container">
-            <div class="row">
-                <div class="col-md-8">
-                {% block content %}
-                {% endblock %}
-                </div>
-            </div>
-        </div>
-        
-    </body>
+      <div class="container">
+        <ol class="breadcrumb my-4">
+          {% block breadcrumb %}
+          {% endblock %}
+        </ol>
+        {% block content %}
+        {% endblock %}
+      </div>
+    {% endblock body %}  <!-- AND HERE -->
+  </body>
 </html>

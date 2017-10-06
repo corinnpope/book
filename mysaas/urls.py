@@ -15,10 +15,12 @@ Including another URLconf
 """
 from django.conf.urls import include, url
 from django.contrib import admin
-from stractic.views import index
+from stractic import views
+from accounts import views as accounts_views
 
 urlpatterns = [
-	url(r'^$', index),
+	url(r'^$', views.index, name='index'),
+	url(r'^signup', accounts_views.signup, name='signup'),
     url(r'^admin/', admin.site.urls),
     url(r'^stractic/', include('stractic.urls')),
 
