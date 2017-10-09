@@ -6,25 +6,14 @@
 
 	<form method="post" novalidate>
 		{% csrf_token %}
-		
+		{% include 'includes/form.html' %}
 		{% if form.non_field_errors %}
 			<div class="alert alert-danger" role="alert">
 			{% for error in form.non_field_errors %}
 				<p{% if forloop.last %} class="mb-0"{% endif %}>{{ error }}</p>
-				{% endfor %}
+			{% endfor %}
 			</div>
 		{% endif %}
-
-		{% for field in form %}
-		<div class="form-group">
-	        <label>{{ field.label }}</label>
-	    </div>
-	        {% if field.errors %}
-	            {{ field.errors }}
-	        {% endif %}
-	        {{ field }}
-    	{% endfor %}
-
     <input type="hidden" name="next" value="{{ next }}" />
     <input class="btn btn-primary" type="submit" value="Submit"/>
     </form>
