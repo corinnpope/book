@@ -1,16 +1,15 @@
 {% for field in form %}
-		<div class="form-group">
-	        <label>{{ field.label }}</label>
-	    </div>
-	        {% if field.errors %}
-	            {{ field.errors }}
-	        {% endif %}
-	        {{ field }}
-    	{% endfor %}
-
-    {% if field.help_text %}
-      <small class="form-text text-muted">
-        {{ field.help_text|safe }}  <!-- new code here -->
-      </small>
+	<div class="form-group">
+	    <label>{{ field.label }}</label>
+	</div>
+    {% if field.errors %}
+        {{ field.errors }}
     {% endif %}
-  </div>
+	{{ field }}
+{% endfor %}
+
+{% if field.help_text %}
+  <small class="form-text text-muted">
+    {{ field.help_text|safe }}
+  </small>
+{% endif %}

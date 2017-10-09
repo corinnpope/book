@@ -8,4 +8,5 @@ urlpatterns = [
     url(r'^(?P<resource_id>[0-9]+)/$',views.detail,name='detail'),
     url(r'^(?P<resource_id>[0-9]+)/favorites/$',views.favorites,name='favorites'),
     url(r'^(?P<resource_id>[0-9]+)/vote/$',views.vote,name='vote'),
+    url(r'^(?P<resource_id>[0-9]+)/results/$',views.results,name='results'),
 ]

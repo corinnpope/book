@@ -1,0 +1,11 @@
+<h1>{{ resource.resource_description }}</h1>
+
+<ul>
+{% for favorite in resource.favorite_set.all %}
+    <li>{{ favorite.comments }} </li>
+    <li> {{ favorite.favorited }} </li>
+	<li>{{ favorite.votes.count }}</li>
+{% endfor %}
+</ul>
+
+<a href="{% url 'stractic:detail' resource.id %}">Vote again?</a>

@@ -14,4 +14,14 @@
 {% endfor %}
 </ul>
 
+
+<form action="{% url 'stractic:vote' resource.id %}" method="post">
+{% csrf_token %}
+{% for favorite in resource.favorite_set.all %}
+    <input type="radio" name="favorite" id="favorite{{ forloop.counter }}" value="{{ favorite.id }}" />
+    <label for="choice{{ forloop.counter }}">Favorite?</label><br />
+{% endfor %}
+<input type="submit" value="Save as Favorite" />
+</form>
+
 {% endblock %}
