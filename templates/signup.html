@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block body %}
+  <div class="container">
+    <h2>Sign up</h2>
+    <form method="post">
+      {% csrf_token %}
+      {{ form.as_p }}
+
+      <!-- Need to add validation here -->
+
+      {% if field.help_text %}
+	      <small class="form-text text-muted">
+	        {{ field.help_text|safe }}  <!-- new code here -->
+	      </small>
+      {% endif %}
+
+      <button type="submit" class="btn btn-primary">Create an account</button>
+    </form>
+  </div>
+
+  Already have an account? <a href="{% url 'login' %}">Log in</a>
+{% endblock %}
