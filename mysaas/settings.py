@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'accounts',
     'stractic',
+    'pinax.stripe',
 ]
 
 MIDDLEWARE = [
@@ -48,7 +49,7 @@ MIDDLEWARE = [
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    # "pinax.stripe.middleware.ActiveSubscriptionMiddleware"
 ]
 
 ROOT_URLCONF = 'mysaas.urls'
@@ -124,9 +125,15 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
-
+SITE_ID = 1
 STATIC_URL = '/static/'
 LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = 'index'
 LOGOUT_REDIRECT_URL = 'index'
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+
+PINAX_STRIPE_PUBLIC_KEY = os.environ.get("STRIPE_PUBLIC_KEY", "pk_0B8kQC9cxlI6YDC0rUryj3UuuBLBM")
+PINAX_STRIPE_SECRET_KEY = os.environ.get("STRIPE_SECRET_KEY", "sk_0B8kOPzXeyG1MmgBVMgWbrbBS7WiD")
+PINAX_STRIPE_DEFAULT_PLAN = 'silver-startup-750'
+PINAX_STRIPE_SUBSCRIPTION_REQUIRED_REDIRECT = 'signup'

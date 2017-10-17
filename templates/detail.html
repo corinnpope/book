@@ -1,13 +1,26 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<a href="{% url 'index' %}">Back Home</a>
+<br>
+<a class="btn btn-default" href="{% url 'stractic:resource_edit' resource_id=resource.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
+
+<h2>About This Resource</h2>
 <ul>
 	<li>{{ resource.resource_name }}</li>
 	<li>{{ resource.resource_url }}</li>
 	<li>{{ resource.resource_description }}</li>
 </ul>
 
-<h1>{{ resource.resource_description }}</h1>
+<h2>Comments on {{ resource.resource_name }}</h2>
+
+<h4>Add a Comment</h4>
+
+    <form method="POST" class="favorite-form">{% csrf_token %}
+        {{ formset.as_p }}
+        <button type="submit" class="save btn btn-default">Save</button>
+    </form>
+
 <ul>
 {% for favorite in resource.favorite_set.all %}
     <li>{{ favorite.comments }}</li>
@@ -15,13 +28,5 @@
 </ul>
 
 
-<form action="{% url 'stractic:vote' resource.id %}" method="post">
-{% csrf_token %}
-{% for favorite in resource.favorite_set.all %}
-    <input type="radio" name="favorite" id="favorite{{ forloop.counter }}" value="{{ favorite.id }}" />
-    <label for="choice{{ forloop.counter }}">Favorite?</label><br />
-{% endfor %}
-<input type="submit" value="Save as Favorite" />
-</form>
 
 {% endblock %}

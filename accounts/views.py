@@ -1,5 +1,6 @@
 from django.contrib.auth import login as auth_login
 from django.shortcuts import render, redirect
+from pinax.stripe.actions import customers
 
 from .forms import SignUpForm
 
@@ -7,9 +8,10 @@ def signup(request):
     if request.method == 'POST':
         form = SignUpForm(request.POST)
         if form.is_valid():
-            user = form.save()
-            auth_login(request, user)
-            return redirect('index')
+        	customers.create(user=new_user)
+        	user = form.save()
+        	auth_login(request, user)
+        	return redirect('index')
     else:
         form = SignUpForm()
     return render(request, 'signup.html', {'form': form})

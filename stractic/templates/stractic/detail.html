@@ -1,26 +1,36 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<a href="{% url 'index' %}">Back Home</a>
+<br>
+<a class="btn btn-default" href="{% url 'stractic:resource_edit' resource_id=resource.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
 
-	<!-- whoah! just use _set for foreign keys- that's handy -->
-	<h1>{{ resource.resource_description }}</h1>
+<h2>About This Resource</h2>
+<ul>
+	<li>{{ resource.resource_name }}</li>
+	<li>{{ resource.resource_url }}</li>
+	<li>{{ resource.resource_description }}</li>
+</ul>
 
-	<ul>
-	{% for favorite in resource.favorite_set.all %}
-	    <li>{{ favorite.comments }}</li>
-	    <li>{{ favorite.votes }}
-	{% endfor %}
-	</ul>
+<h2>Comments on {{ resource.resource_name }}</h2>
 
+<h4>Add a Comment</h4>
+<p>stractic template</p>
+<form method="post" action="">
+    {{ formset.management_form }}
+    {% for form in formset %}
+        {% for field in form %}
+            {{ field.label_tag }} {{ field }}
+        {% endfor %}
+    {% endfor %}
+</form>
 
-<!-- <form action="{% url 'stractic:vote' resource.id %}" method="post">
-{% csrf_token %}
+<ul>
 {% for favorite in resource.favorite_set.all %}
-    <input type="radio" name="favorite" id="favorite{{ forloop.counter }}" value="{{ favorite.id }}" />
-    <label for="choice{{ forloop.counter }}">{{ favorite.comments }}</label><br />
+    <li>{{ favorite.comments }}</li>
 {% endfor %}
-<input type="submit" value="Vote" />
-</form> -->
+</ul>
+
 
 
 {% endblock %}
